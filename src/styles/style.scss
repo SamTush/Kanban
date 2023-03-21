@@ -1,6 +1,25 @@
-$primary: pink;
+$primary: #eb5e28;
+$secondary-color: #252422;
+$secondary-color-light: #403d39;
+$tertiary-color: #ccc5b9;
+$tertiary-color-light: #fffcf2;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 
 body {
-  background: $primary;
+  background: $tertiary-color;
   margin: 0;
+
+  footer {
+    span {
+      a {
+        color: $secondary-color-light;
+        text-decoration: none;
+      }
+    }
+  }
 }
