@@ -103,7 +103,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_style_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/style.sass */ \"./src/styles/style.sass\");\n\n\n//# sourceURL=webpack://kanban/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_style_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/style.sass */ \"./src/styles/style.sass\");\n\n\nfetch('https://api.tvmaze.com/shows',{\n    method: \"GET\",\n})\n  .then((response) => response.json())\n  .then((data) => console.log(data))\n\n//# sourceURL=webpack://kanban/./src/index.js?");
 
 /***/ })
 
