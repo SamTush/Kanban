@@ -14,35 +14,51 @@ body {
   background: $tertiary-color;
   margin: 0;
 
+  .navigation {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    margin: 20px;
+    height: 100px;
+
+    a {
+      color: $secondary-color-light;
+      text-decoration: none;
+    }
+
+    p {
+      border-radius: 50%;
+  
+      img {
+        width: 80px;
+      }
+    }
+  }
+
+  .movies {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: space-around;
+    margin-inline: 8%;
+    gap: 10px;
+
+    div {
+
+    }
+
+    div img {
+      width: 250px;
+    }
+  }
+
   footer {
     span {
       a {
         color: $secondary-color-light;
         text-decoration: none;
       }
-    }
-  }
-}
-
-
-
-a {
-  text-decoration: none;
-  color: $secondary-color-light;
-}
-
-.navigation {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  align-items: center;
-  margin: 20px;
-  height: 100px;
-  p {
-    border-radius: 50%;
-
-    img {
-      width: 80px;
     }
   }
 }
