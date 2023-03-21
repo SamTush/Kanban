@@ -21,15 +21,24 @@ module.exports = {
     },
     module: {
         rules: [
-          {
-            test: /\.sass$/,
-            use: [
-              'style-loader',
-              'sass-loader'
-            ]
-          }
+            {
+                test: /\.sass$/,
+                use: [
+                    'sass-loader',
+                    'sass',
+                    'style-loader'
+                ]
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            }
         ]
-      },
+    },   
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Kanban',
