@@ -22,6 +22,18 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.m?js$/,
+                exclude: /node_modules/,
+                use: {
+                  loader: 'babel-loader',
+                  options: {
+                    presets: [
+                      ['@babel/preset-env', { targets: 'defaults' }],
+                    ],
+                  },
+                },
+            },
+            {
                 test: /\.sass$/,
                 use: [
                     'sass-loader',
@@ -36,6 +48,17 @@ module.exports = {
                     'css-loader',
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+            },
+            {
+                test: /\.(mp4|webm)$/i,
+                loader: 'file-loader',
+                options: {
+                  name: 'assets/[name].[ext]'
+                }
             }
         ]
     },   

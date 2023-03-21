@@ -1,6 +1,39 @@
-$primary: pink;
+$primary: rgb(223, 234, 249);
 
-body {
-    background: $primary;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+  &::before {
+    box-sizing: border-box;
+    padding: 0;
     margin: 0;
+  } 
+
+  &::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+   }
+}
+
+a {
+  text-decoration: none;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  margin: 20px;
+  height: 100px;
+  p {
+    border-radius: 50%;
+
+    img {
+      width: 80px;
+    }
+  }
 }
