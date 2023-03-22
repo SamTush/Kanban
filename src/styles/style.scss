@@ -46,10 +46,19 @@ body {
 
     div {
 
-    }
+      img {
+        width: 250px;
+      }
 
-    div img {
-      width: 250px;
+      span {
+        button{
+          padding: 5px;
+          
+          .fa-solid {
+            color: rgb(37, 38, 39)
+          }
+        }
+      }
     }
   }
 

@@ -1,5 +1,7 @@
 import './styles/style.scss';
-
+import layout from './modules/display';
+import { like, getLikes } from './modules/shows';
+import moviesCounter from './modules/itemsCounter';
 import logo from './assets/KANBAN.png';
 
 const image = document.querySelector('#logo');
@@ -17,30 +19,15 @@ const arrow = async () => {
     movies.push(data[i]);
   }
   return movies;
-};
-
-const layout = (movie) => {
-  const movieSection = document.querySelector('#movie-list');
-  const movieItem = document.createElement('div');
-
-  movieItem.innerHTML = `
-  <div>
-      <img src="${movie.image.original}" alt="" >
-      <span>
-      <h2>Arrow Season ${movie.number}</h2>
-      <button type="button"></button>
-      </span>     
-  </div>
-  <button type="button" >Comments</button>
-  <button type="button" >Reservations</button>
-  `;
-
-  movieSection.appendChild(movieItem);
-}
-
+ };
 
 document.addEventListener('DOMContentLoaded', () => {
     arrow().then((movies) => {
     movies.forEach((movie) => layout(movie));
+    moviesCounter(movies);
+    getLikes();
+    like();
     })
 })
+
+
