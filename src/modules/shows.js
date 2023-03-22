@@ -59,5 +59,4 @@ const like = () => {
   })
 }
 
-
 export { like, getLikes }

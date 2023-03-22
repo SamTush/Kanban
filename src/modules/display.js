@@ -8,7 +8,7 @@ const layout = (movie) => {
       <span>
       <h2>Arrow Season ${movie.number}</h2>
       <button type="button" class="like-btn"><i class="fa-sharp fa-solid fa-square-heart"></i></button>
-      <span class="likes"></span>
+      <span class="likes"> 0 likes </span>
       </span>     
   </div>
   <button type="button">Comments</button>
