@@ -76,10 +76,6 @@ const commentLayout = (movie, popup) => {
        </div>
        </div>
        `;
-       const exitButton = popup.querySelector('.exit-btn');
-       exitButton.addEventListener('click', () => {
-         popup.style.display = 'none';
-       });
    }
 
  export { commentLayout };
