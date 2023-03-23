@@ -14,6 +14,15 @@ body {
   background: $tertiary-color;
   margin: 0;
 
+  footer {
+    span {
+      a {
+        color: $secondary-color-light;
+        text-decoration: none;
+      }
+    }
+  }
+
   .navigation {
     display: flex;
     flex-direction: row;
@@ -29,17 +38,26 @@ body {
 
     p {
       border-radius: 50%;
-  
+
       img {
         width: 80px;
       }
     }
   }
 
-  // .popup {
-  //   transform: scale(0);
-  //   position: absolute;
-  // }
+  .popup {
+    position: fixed;
+
+    .main-row {
+      background-color: $secondary-color;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 20px;
+      border-radius: 8px;
+      color: $tertiary-color-light;
+    }
+  }
 
   .movies {
     display: grid;
@@ -50,28 +68,18 @@ body {
     gap: 10px;
 
     div {
-
       img {
         width: 250px;
       }
 
       span {
-        button{
+        button {
           padding: 5px;
-          
+
           .fa-solid {
-            color: rgb(37, 38, 39)
+            color: $secondary-color;
           }
         }
-      }
-    }
-  }
-
-  footer {
-    span {
-      a {
-        color: $secondary-color-light;
-        text-decoration: none;
       }
     }
   }

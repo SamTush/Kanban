@@ -3,7 +3,7 @@ const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capst
 
 const commentLayout = (movie, popup) => {
     return ` <div class="container-fluid popup p-5 mt-5">
-       <div class="row">
+       <div class="row main-row">
            <div class="col col-12 img-section">
                <div class="row">
                    <div class="col col-11 d-flex justify-content-center">
@@ -19,8 +19,8 @@ const commentLayout = (movie, popup) => {
                    <div class="col col-12 d-flex justify-content-center">
                        <h2>Arrow Season ${movie.number}</h2>
                    </div>
-                   <div class="col col-6 ps-4">${movie.endDate}</div>
-                   <div class="col col-6 ps-5">${movie.premiereDate}</div>
+                   <div class="col col-6 ps-4">${movie.premiereDate}</div>
+                   <div class="col col-6 ps-5">${movie.endDate}</div>
                    <div class="col col-12 pt-1 ps-4">${movie.summary}</div>
                </div>
            </div>
@@ -38,7 +38,7 @@ const commentLayout = (movie, popup) => {
                    <h5 class="mb-">Add a comment</h5>
                </div>
                <div>
-                   <form>
+                   <form id="submit">
                        <div class="mt-3 ps-4">
                        <label for="Your name"hidden>Your name</label>
                        <input type="text" class="form-control" id="your-name" placeholder="Your name">

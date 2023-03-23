@@ -33,11 +33,11 @@ const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capst
       like();
       const buttons = document.querySelectorAll('.comments-btn');
       buttons.forEach((button, index) => {
-        button.addEventListener('click', () => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
           const popup = document.createElement('div');
           popup.innerHTML = commentLayout(movies[index], popup);
           nav.insertAdjacentElement('beforebegin', popup);
-  
           const exitButton = popup.querySelector('.exit-btn');
           exitButton.addEventListener('click', () => {
           popup.style.display = 'none';
