@@ -1,7 +1,6 @@
 const involvementId = 'sGPblqXwvYvemdbE1QYB';
 const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments`;
 
-const postCommentBtn = document.querySelectorAll('#post-comment');
 // const displayPopUp = document.querySelector('#popup');
 // const moviesPost = () => {
 //   postComment = async (index, username, comment) => {
@@ -22,7 +21,7 @@ const postCommentBtn = document.querySelectorAll('#post-comment');
 //    };
 // }
 
-const commentLayout = (movie) => {
+const commentLayout = (movie, popup) => {
     return ` <div class="container-fluid popup p-5 mt-5">
        <div class="row">
            <div class="col col-12 img-section">
@@ -30,9 +29,9 @@ const commentLayout = (movie) => {
                    <div class="col col-11 d-flex justify-content-center">
                        <img id="popup-img" src="${movie.image.medium}" alt="" srcset="">
                    </div>
-                   <div class="col col-1 mt-3">
-                       <i class="fa-solid fa-xmark fa-2xl"></i>
-                   </div>
+                   <button class="col col-1 mt-3">
+                       <i class="fa-solid fa-xmark fa-2xl exit-btn"></i>
+                   </button>
                </div>
            </div>
            <div class="col col-12 pt-3 title-section">
@@ -76,7 +75,11 @@ const commentLayout = (movie) => {
            </div>
        </div>
        </div>
-       `
+       `;
+       const exitButton = popup.querySelector('.exit-btn');
+       exitButton.addEventListener('click', () => {
+         popup.style.display = 'none';
+       });
    }
 
  export { commentLayout };

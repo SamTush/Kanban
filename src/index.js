@@ -22,15 +22,25 @@ const arrow = async () => {
   return movies;
  };
 
-document.addEventListener('DOMContentLoaded', () => {
+ document.addEventListener('DOMContentLoaded', () => {
     arrow().then((movies) => {
-    movies.forEach((movie) => layout(movie));
-    moviesCounter(movies);
-    getLikes();
-    like(); 
-    nav.insertAdjacentHTML('afterend', commentLayout(movies[0]));
-    })
-})
- 
-
+      movies.forEach((movie) => layout(movie));
+      moviesCounter(movies);
+      getLikes();
+      like();
+      const buttons = document.querySelectorAll('.comments-btn');
+      buttons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+          const popup = document.createElement('div');
+          popup.innerHTML = commentLayout(movies[index], popup);
+          nav.insertAdjacentElement('beforebegin', popup);
+  
+          const exitButton = popup.querySelector('.exit-btn');
+          exitButton.addEventListener('click', () => {
+            popup.style.display = 'none';
+          });
+        });
+      });      
+    });
+  });
 
