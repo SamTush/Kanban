@@ -22,6 +22,9 @@ const arrow = async () => {
   return movies;
  };
 
+const involvementId = 'sGPblqXwvYvemdbE1QYB';
+const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments`;
+
  document.addEventListener('DOMContentLoaded', () => {
     arrow().then((movies) => {
       movies.forEach((movie) => layout(movie));
@@ -37,10 +40,11 @@ const arrow = async () => {
   
           const exitButton = popup.querySelector('.exit-btn');
           exitButton.addEventListener('click', () => {
-            popup.style.display = 'none';
+          popup.style.display = 'none';
           });
         });
       });      
     });
   });
 
+  

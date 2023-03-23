@@ -1,0 +1,69 @@
+const form = document.querySelector('form');
+            const nameInput = document.getElementById('your-name');
+            const commentInput = document.getElementById('your-insights');
+            const  addComment = async ( name, comment) => {
+                await fetch(commentUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8',
+                },
+                body: JSON.stringify({ user: name, comment }),
+                })
+                .then((response) => response.json());
+            };
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const name = nameInput.value;
+                const comment = commentInput.value;
+                addComment(name, comment);
+            });
+            const commentsContainer = document.querySelector('.comments-section');
+            fetch(commentUrl)
+                .then((response) => response.json())
+                .then((comments) => {
+                    if (Array.isArray(comments)) {
+                        const commentsHtml = comments.map((comment) => {
+                          return `<div class="col col-12 ps-4">${comment.date} ${comment.username}: ${comment.comment}</div>`;
+                        }).join('');
+                        commentsContainer.innerHTML = `
+                          <div class="row">
+                            <div class="col col-12 d-flex justify-content-center">
+                              <h5>Comments (${comments.length})</h5>
+                            </div>
+                            ${commentsHtml}
+                          </div>
+                        `;
+                      } else {
+                        console.log('not array')
+                      } 
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+ 
+        document.getElementById("form-submit").addEventListener("submit", (event) => {
+            event.preventDefault(); 
+            const name = document.getElementById("your-name").value;
+            const comment = document.getElementById("your-insights").value;
+            fetch(commentUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name, comment })
+            })
+            .then(response => response.json())
+            .then(data => {
+            console.log(data)
+            const itemIndex = movies.findIndex(movie => movie.name === name && movie.comment === comment);
+            items[itemIndex] = {
+                ...items[itemIndex],
+                data: data
+            };
+            renderItems(movies);
+            })
+            .catch(error => {
+            console.error(error);
+            });
+        });               

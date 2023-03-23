@@ -24,22 +24,24 @@ const getLikes = async () => {
     const likes = await response.json();
     likes.forEach((like) => {
       const itemId = like.item_id;
-      const item = document.querySelector(`img[src="${itemId}"]`).parentNode;
-      const likeBtn = item.querySelector('.like-btn');
-      const likesCount = like.likes;
-      const likesText = likesCount === 1 ? '1 like' : `${likesCount} likes`;
-      const likesDisplay = item.querySelector('.likes');
-      if (likesDisplay) {
-        likesDisplay.innerText = likesText;
-      } else {
-        likeBtn.insertAdjacentHTML('afterend', `<span class="likes">${likesText}</span>`);
+      const itemImg = document.querySelector(`img[src="${itemId}"]`);
+      if (itemImg) {
+        const item = itemImg.parentNode;
+        const likeBtn = item.querySelector('.like-btn');
+        const likesCount = like.likes;
+        const likesText = likesCount === 1 ? '1 like' : `${likesCount} likes`;
+        const likesDisplay = item.querySelector('.likes');
+        if (likesDisplay) {
+          likesDisplay.innerText = likesText;
+        } else {
+          likeBtn.insertAdjacentHTML('afterend', `<span class="likes">${likesText}</span>`);
+        }
       }
     });
   } catch (error) {
     console.error('Error getting likes:', error);
   }
 }
-
 const like = () => {
   const likeBtn = document.querySelectorAll('.like-btn');
   likeBtn.forEach((button) => {

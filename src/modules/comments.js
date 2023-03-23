@@ -1,26 +1,6 @@
 const involvementId = 'sGPblqXwvYvemdbE1QYB';
 const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments`;
 
-// const displayPopUp = document.querySelector('#popup');
-// const moviesPost = () => {
-//   postComment = async (index, username, comment) => {
-//     await fetch(commentUrl, {
-//       method: 'POST',
-//       body: JSON.stringify({
-//         item_id: index,
-//         username,
-//         comment,
-//       }),
-//       headers: { 'content-Type': 'application/json; charset=UTF-8' },
-//     });
-//   }
-//    getComment = async (index) => {
-//      const response = await fetch(`${commentUrl}?item_id=${index}`);
-//      const user = await response.json();
-//      return user;
-//    };
-// }
-
 const commentLayout = (movie, popup) => {
     return ` <div class="container-fluid popup p-5 mt-5">
        <div class="row">
@@ -45,7 +25,7 @@ const commentLayout = (movie, popup) => {
                </div>
            </div>
            <div class="col col-12 pt-3 mt-4 comments-section">
-               <div class="row">
+               <div class="row coments-container">
                    <div class="col col-12 d-flex justify-content-center">
                        <h5>Comments (2)</h5>
                    </div>
@@ -68,7 +48,7 @@ const commentLayout = (movie, popup) => {
                        <textarea type="text" class="form-control" id="your-insights" placeholder="Your insights"></textarea>
                        </div>
                        <div class=" mt-3 ps-4">
-                           <button type="submit" class="btn btn-outline-light">Submit</button>
+                           <button type="submit" id="form-submit" class="btn btn-outline-light">Submit</button>
                        </div>
                    </form>
                </div>
@@ -76,6 +56,6 @@ const commentLayout = (movie, popup) => {
        </div>
        </div>
        `;
-   }
+};
 
  export { commentLayout };
