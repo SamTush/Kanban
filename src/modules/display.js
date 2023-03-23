@@ -11,7 +11,7 @@ const layout = (movie) => {
       <span class="likes"> 0 likes </span>
       </span>     
   </div>
-  <button type="button">Comments</button>
+  <button id="${movie.id}" type="button" class="comments-btn">Comments</button>
   <button type="button">Reservations</button>
   `;
 
