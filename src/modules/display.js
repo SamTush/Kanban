@@ -17,6 +17,6 @@ const layout = (movie, index) => {
   `;
 
   movieSection.appendChild(movieItem);
-}
+};
 
-export default layout 
+export default layout;

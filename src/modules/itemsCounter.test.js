@@ -14,7 +14,7 @@ test('it should display the correct number of items', () => {
   const movies = [
     { name: 'Movie 1' },
     { name: 'Movie 2' },
-    { name: 'Movie 3' }
+    { name: 'Movie 3' },
   ];
   const expectedResult = `<span>(${movies.length})</span>`;
   const mockElement = document.querySelector('.home');
