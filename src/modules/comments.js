@@ -58,7 +58,7 @@ const commentLayout = (index) => {
     </div>
     `);
 };
-  
+
 const getComment = async (itemId) => {
   try {
     const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments?item_id=${itemId}`);
@@ -67,6 +67,26 @@ const getComment = async (itemId) => {
   } catch (error) {
     return error;
   }
+};
+
+const postComment = async (itemId, name, comment) => {
+  const response = await fetch(
+    commentUrl,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        item_id: itemId,
+        username: name,
+        comment,
+      }),
+    },
+  );
+  const data = await response.text();
+  getComment(itemId);
+  return data || null;
 };
 
 const commentBtn = async (movies) => {
@@ -92,14 +112,13 @@ const commentBtn = async (movies) => {
         const formComment = document.querySelector('#your-insights');
         const movieIndex = movies[index];
         const movieId = movieIndex.id;
-        console.log(movieId)
         await postComment(movieId, formName.value, formComment.value);
         formComment.value = '';
         formName.value = '';
         const getAllComment = await getComment(movieId);
         let html = '';
         getAllComment.forEach((element) => {
-          html += `<li>${element.creation_date} --- ${element.comment} --- ${element.username}</li>`; 
+          html += `<li>${element.creation_date} --- ${element.comment} --- ${element.username}</li>`;
         });
         commentList.innerHTML = html;
         const countComment = document.querySelector('.count-comments');
@@ -124,26 +143,6 @@ const closePopup = () => {
     const popup = document.querySelector('.popup');
     popup.classList.remove('active');
   });
-};
-
-const postComment = async (itemId , name, comment) => {
-  const response = await fetch(
-    commentUrl,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        item_id: itemId,
-        username: name,
-        comment: comment
-      }),
-    },
-  );
-  const data = await response.text();
-  getComment(itemId);
-  return data || null;
 };
   
 export { commentLayout, commentBtn, closePopup, getComment, postComment };

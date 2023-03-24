@@ -16,7 +16,7 @@ test('it should display the correct number of items', () => {
     { name: 'Movie 2' },
     { name: 'Movie 3' },
   ];
-  const expectedResult = `<span>${movies.length}</span>`;
+  const expectedResult = `<span>(${movies.length})</span>`;
   const mockElement = document.querySelector('.home');
   moviesCounter(movies, mockElement);
   expect(mockElement.innerHTML).toBe(expectedResult);
