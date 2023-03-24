@@ -81,6 +81,7 @@ const commentBtn = async (movies) => {
       document.querySelector('.title-section h2').textContent = `Arrow Season ${season}`;
       document.querySelector('.title-section .ps-4').innerHTML = summary;
       popup.classList.add('active');
+      
       const commentFrom = document.querySelector('#form-submit-comment');
       const commentList = document.querySelector('.commentsList');
       commentFrom.addEventListener('submit', async (e) => {
