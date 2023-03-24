@@ -36,10 +36,13 @@ body {
     }
   }
 
-  // .popup {
-  //   transform: scale(0);
-  //   position: absolute;
-  // }
+  .popup {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
 
   .movies {
     display: grid;

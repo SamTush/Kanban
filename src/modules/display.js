@@ -1,4 +1,4 @@
-const layout = (movie) => {
+const layout = (movie, index) => {
   const movieSection = document.querySelector('#movie-list');
   const movieItem = document.createElement('div');
 
@@ -11,7 +11,7 @@ const layout = (movie) => {
       <span class="likes"> 0 likes </span>
       </span>     
   </div>
-  <button id="${movie.id}" type="button" class="comments-btn">Comments</button>
+  <button id="${movie.id}" data-movies="${index}" type="button" class="comments-btn">Comments</button>
   <button type="button">Reservations</button>
   `;
 

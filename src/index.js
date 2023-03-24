@@ -3,11 +3,11 @@ import layout from './modules/display';
 import { like, getLikes } from './modules/shows';
 import moviesCounter from './modules/itemsCounter';
 import logo from './assets/KANBAN.png';
-import { commentLayout } from './modules/comments';
+import { commentLayout, closePopup, commentBtn } from './modules/comments';
+import { formSubmit } from './modules/addcomment';
 
 const image = document.querySelector('#logo');
-image.setAttribute('src', logo); 
-const nav = document.querySelector('.navigation');
+image.setAttribute('src', logo);
 
 let movies = [];
 
@@ -22,29 +22,24 @@ const arrow = async () => {
   return movies;
  };
 
-const involvementId = 'sGPblqXwvYvemdbE1QYB';
-const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments`;
-
- document.addEventListener('DOMContentLoaded', () => {
-    arrow().then((movies) => {
-      movies.forEach((movie) => layout(movie));
-      moviesCounter(movies);
-      getLikes();
-      like();
-      const buttons = document.querySelectorAll('.comments-btn');
-      buttons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-          const popup = document.createElement('div');
-          popup.innerHTML = commentLayout(movies[index], popup);
-          nav.insertAdjacentElement('beforebegin', popup);
-  
-          const exitButton = popup.querySelector('.exit-btn');
-          exitButton.addEventListener('click', () => {
-          popup.style.display = 'none';
-          });
-        });
-      });      
-    });
+document.addEventListener('DOMContentLoaded', () => {
+  arrow().then((movies) => {
+    movies.forEach((movie, index) => {
+      layout(movie, index);
+    });    
+    moviesCounter(movies);
+    getLikes();
+    like();
+    commentLayout();
+    commentBtn(movies);
+    closePopup();
+    formSubmit();
   });
+});
 
-  
+
+
+
+
+
+   
