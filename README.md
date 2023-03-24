@@ -33,7 +33,8 @@
 - [] Html and CSS
 - [] Webpack
 - [] Bootstrap
-- [] Jest 
+- [] Jest
+- Sass 
 ### Key Features <a name="key-features"></a>
 
 - **Like Button that save and displays likes on a invovlement API**
