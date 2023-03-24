@@ -68,9 +68,9 @@ const arrow = async () => {
     method: 'GET',
   });
   const data = await response.json();
-  for (let i = 0; i < data.length; i++) {
-    movies.push(data[i]);
-  }
+  for (const movie of data) {
+    movies.push(movie);
+  }  
   return movies;
 };
 
