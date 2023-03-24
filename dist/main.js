@@ -10,13 +10,63 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/style.scss */ \"./src/styles/style.scss\");\n/* harmony import */ var _modules_display_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/display.js */ \"./src/modules/display.js\");\n/* harmony import */ var _modules_shows_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/shows.js */ \"./src/modules/shows.js\");\n/* harmony import */ var _modules_itemsCounter_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/itemsCounter.js */ \"./src/modules/itemsCounter.js\");\n/* harmony import */ var _assets_KANBAN_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/KANBAN.png */ \"./src/assets/KANBAN.png\");\n/* harmony import */ var _modules_comments_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/comments.js */ \"./src/modules/comments.js\");\n\n\n\n\n\n\nconst image = document.querySelector('#logo');\nimage.setAttribute('src', _assets_KANBAN_png__WEBPACK_IMPORTED_MODULE_4__);\ndocument.addEventListener('DOMContentLoaded', () => {\n  (0,_modules_shows_js__WEBPACK_IMPORTED_MODULE_2__.arrow)().then(movies => {\n    movies.forEach((movie, index) => {\n      (0,_modules_display_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(movie, index);\n    });\n    (0,_modules_itemsCounter_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(movies);\n    (0,_modules_shows_js__WEBPACK_IMPORTED_MODULE_2__.getLikes)();\n    (0,_modules_shows_js__WEBPACK_IMPORTED_MODULE_2__.like)();\n    (0,_modules_comments_js__WEBPACK_IMPORTED_MODULE_5__.commentLayout)();\n    (0,_modules_comments_js__WEBPACK_IMPORTED_MODULE_5__.commentBtn)(movies);\n    (0,_modules_comments_js__WEBPACK_IMPORTED_MODULE_5__.closePopup)();\n  });\n});\n\n//# sourceURL=webpack://kanban/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/comments.js":
+/*!*********************************!*\
+  !*** ./src/modules/comments.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"closePopup\": () => (/* binding */ closePopup),\n/* harmony export */   \"commentBtn\": () => (/* binding */ commentBtn),\n/* harmony export */   \"commentLayout\": () => (/* binding */ commentLayout),\n/* harmony export */   \"getComment\": () => (/* binding */ getComment),\n/* harmony export */   \"postComment\": () => (/* binding */ postComment)\n/* harmony export */ });\nconst nav = document.querySelector('.navigation');\nconst commentLayout = index => {\n  nav.insertAdjacentHTML('afterend', ` <div class=\"container-fluid popup p-5 mt-5\" id=\"popup-${index}\">\n    <div class=\"row main-row\">\n        <div class=\"col col-12 img-section\">\n            <div class=\"row\">\n                <div class=\"col col-11 d-flex justify-content-center\">\n                    <img id=\"popup-img\" src=\"\" alt=\"\" srcset=\"\">\n                </div>\n                <button class=\"col col-1 mt-3\">\n                    <i class=\"fa-solid fa-xmark fa-2xl exit-btn\"></i>\n                </button>\n            </div>\n        </div>\n        <div class=\"col col-12 pt-3 title-section\">\n            <div class=\"row\">\n                <div class=\"col col-12 d-flex justify-content-center\">\n                    <h2>Arrow Season </h2>\n                </div>\n                <div class=\"col col-6 ps-4\"></div>\n                <div class=\"col col-6 ps-5\"></div>\n                <div class=\"col col-12 pt-1 ps-4\"></div>\n            </div>\n        </div>\n        <div class=\"col col-12 pt-3 mt-4 comments-section\" id=\"comments-${index}\">\n            <div class=\"row coments-container\">\n                <div class=\"col col-12 d-flex count-comments justify-content-center\">\n                </div>\n                <div class=\"col col-12 ps-4\">\n                 <ul class=\"commentsList\">\n                 </ul>\n                </div>\n            </div>\n        </div>\n        <div class=\"col col-12 comment-section mt-4 pt-3\">\n            <div class=\"col col-12 d-flex justify-content-center\">\n                <h5 class=\"mb-\">Add a comment</h5>\n            </div>\n            <div>\n                <form id=\"form-submit-comment\" class=\"comment-form\">\n                    <div class=\"mt-3 ps-4\">\n                    <label for=\"Your name\"hidden>Your name</label>\n                    <input type=\"text\" class=\"form-control\" id=\"your-name\" placeholder=\"Your name\" required>\n                    </div>\n                    <div class=\"mt-3 ps-4\">\n                    <label for=\"Your insights\"hidden>Your insights</label>\n                    <textarea type=\"text\" class=\"form-control\" id=\"your-insights\" placeholder=\"Your insights\" required></textarea>\n                    </div>\n                    <div class=\" mt-3 ps-4\">\n                        <button type=\"submit\" id=\"form-submit\" class=\"btn btn-outline-light\">Submit</button>\n                    </div>\n                </form>\n            </div>\n        </div>\n    </div>\n    </div>\n    `);\n};\nconst commentBtn = async movies => {\n  const commentPopUp = document.querySelectorAll('.comments-btn');\n  const popup = document.querySelector('.popup');\n  commentPopUp.forEach(button => {\n    button.addEventListener('click', async () => {\n      const index = parseInt(button.dataset.movies, 10);\n      const movie = movies[index];\n      const imgSrc = movie.image.medium;\n      const summary = movie.summary;\n      const season = movie.number;\n      document.getElementById('popup-img').setAttribute('src', imgSrc);\n      document.querySelector('.title-section h2').textContent = `Arrow Season ${season}`;\n      document.querySelector('.title-section .ps-4').innerHTML = summary;\n      popup.classList.add('active');\n      const commentFrom = document.querySelector('#form-submit-comment');\n      const commentList = document.querySelector('.commentsList');\n      commentFrom.addEventListener('submit', async e => {\n        e.preventDefault();\n        const formName = document.querySelector('#your-name');\n        const formComment = document.querySelector('#your-insights');\n        const movieIndex = movies[index];\n        const movieId = movieIndex.id;\n        formComment.value = '';\n        formName.value = '';\n        const getAllComment = await getComment(movieId);\n        let html = '';\n        getAllComment.forEach(element => {\n          html += `<li>${element.creation_date} --- ${element.comment} --- ${element.username}</li>`;\n        });\n        commentList.innerHTML = html;\n        const countComment = document.querySelector('.count-comments');\n        countComment.innerHTML = `<h5>Comments (${getAllComment.length})</h5>`;\n      });\n      const movieIndexGet = movies[index];\n      const movieIdGet = movieIndexGet.id;\n      const getAllComment = await getComment(movieIdGet);\n      let html = '';\n      getAllComment.forEach(element => {\n        html += `<li>${element.creation_date} --- ${element.comment} --- ${element.username}</li>`;\n      });\n      commentList.innerHTML = html;\n      const countCommentTwo = document.querySelector('.count-comments');\n      countCommentTwo.innerHTML = `<h5>Comments (${getAllComment.length})</h5>`;\n    });\n  });\n};\nconst closePopup = () => {\n  document.querySelector('.exit-btn').addEventListener('click', () => {\n    const popup = document.querySelector('.popup');\n    popup.classList.remove('active');\n  });\n};\nconst involvementId = 'sGPblqXwvYvemdbE1QYB';\nconst commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments`;\nconst postComment = async (item_id, name, comment) => {\n  const data = {\n    \"item_id\": item_id,\n    \"username\": name,\n    \"comment\": comment\n  };\n  const response = await fetch(commentUrl, {\n    method: 'POST',\n    headers: {\n      'Content-Type': 'application/json'\n    },\n    body: JSON.stringify(data)\n  });\n  return response;\n};\nconst getComment = async item_id => {\n  try {\n    const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments?item_id=${item_id}`);\n    const commentUser = await response.json();\n    return commentUser;\n  } catch (error) {\n    return error;\n  }\n};\n\n\n//# sourceURL=webpack://kanban/./src/modules/comments.js?");
+
+/***/ }),
+
+/***/ "./src/modules/display.js":
+/*!********************************!*\
+  !*** ./src/modules/display.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst layout = (movie, index) => {\n  const movieSection = document.querySelector('.movies');\n  const movieItem = document.createElement('div');\n  movieItem.innerHTML = `\n  <div>\n      <img src=\"${movie.image.original}\" alt=\"\" >\n      <div class=\"title\">\n        <h2>Arrow Season ${movie.number}</h2>\n        <span>\n        <button type=\"button\" class=\"like-btn\"><i class=\"fa-solid fa-heart btn btn-secondary btn-sm  text-xl font-bold\"></i></button>\n        <span class=\"likes\"> 0 likes </span>\n        </span>    \n      </div> \n  </div>\n  <button id=\"${movie.id}\" data-movies=\"${index}\" type=\"button\" class=\"comments-btn\">Comments</button>\n  `;\n  movieSection.appendChild(movieItem);\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (layout);\n\n//# sourceURL=webpack://kanban/./src/modules/display.js?");
+
+/***/ }),
+
+/***/ "./src/modules/itemsCounter.js":
+/*!*************************************!*\
+  !*** ./src/modules/itemsCounter.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst moviesCounter = movies => {\n  const itemsCounter = movies.length;\n  const seasons = document.querySelector('.home');\n  seasons.insertAdjacentHTML('beforeend', `<span>${itemsCounter}</span>`);\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (moviesCounter);\n\n//# sourceURL=webpack://kanban/./src/modules/itemsCounter.js?");
+
+/***/ }),
+
+/***/ "./src/modules/shows.js":
+/*!******************************!*\
+  !*** ./src/modules/shows.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"arrow\": () => (/* binding */ arrow),\n/* harmony export */   \"getLikes\": () => (/* binding */ getLikes),\n/* harmony export */   \"like\": () => (/* binding */ like)\n/* harmony export */ });\nconst appId = 'sGPblqXwvYvemdbE1QYB';\nconst url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/likes`;\nconst postLike = async itemId => {\n  const requestBody = {\n    item_id: itemId\n  };\n  const options = {\n    method: 'POST',\n    headers: {\n      'Content-Type': 'application/json'\n    },\n    body: JSON.stringify(requestBody)\n  };\n  try {\n    const response = await fetch(url, options);\n    if (response.status === 201) {\n      return 'Like recorded successfully!';\n    }\n  } catch (error) {\n    return 'Error recording like:', error;\n  }\n};\nconst getLikes = async () => {\n  try {\n    const response = await fetch(url);\n    const likes = await response.json();\n    likes.forEach(like => {\n      const itemId = like.item_id;\n      const itemImg = document.querySelector(`img[src=\"${itemId}\"]`);\n      if (itemImg) {\n        const item = itemImg.parentNode;\n        const likeBtn = item.querySelector('.like-btn');\n        const likesCount = like.likes;\n        const likesText = likesCount === 1 ? '1 like' : `${likesCount} likes`;\n        const likesDisplay = item.querySelector('.likes');\n        if (likesDisplay) {\n          likesDisplay.innerText = likesText;\n        } else {\n          likeBtn.insertAdjacentHTML('afterend', `<span class=\"likes\">${likesText}</span>`);\n        }\n      }\n    });\n  } catch (error) {\n    alert('Error getting likes:', error);\n  }\n  ;\n};\nconst like = () => {\n  const likeBtn = document.querySelectorAll('.like-btn');\n  likeBtn.forEach(button => {\n    button.addEventListener('click', () => {\n      const itemId = button.parentNode.parentNode.parentNode.querySelector('img').getAttribute('src');\n      postLike(itemId);\n      button.disabled = true;\n      const likesDisplay = button.parentNode.querySelector('.likes');\n      if (likesDisplay) {\n        const likesCount = parseInt(likesDisplay.innerText) + 1;\n        likesDisplay.innerText = likesCount === 1 ? '1 like' : `${likesCount} likes`;\n      } else {\n        button.insertAdjacentHTML('afterend', '<span class=\"likes\">1 like</span>');\n      }\n      ;\n    });\n  });\n};\nconst movies = [];\nconst arrow = async () => {\n  const response = await fetch('https://api.tvmaze.com/shows/4/seasons', {\n    method: 'GET'\n  });\n  const data = await response.json();\n  for (let i = 0; i < data.length; i++) {\n    movies.push(data[i]);\n  }\n  return movies;\n};\n\n\n//# sourceURL=webpack://kanban/./src/modules/shows.js?");
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/styles/style.scss":
 /*!************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/styles/style.scss ***!
   \************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);\n// Imports\n\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \"body {\\n  background: pink;\\n  margin: 0;\\n}\\nbody a {\\n  text-decoration: none;\\n}\", \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://kanban/./src/styles/style.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);\n// Imports\n\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \"* {\\n  box-sizing: border-box;\\n  padding: 0;\\n  margin: 0;\\n}\\n\\nbody {\\n  display: block;\\n  background: #ccc5b9;\\n  margin: 0;\\n}\\nbody footer span a {\\n  color: #403d39;\\n  text-decoration: none;\\n}\\nbody .navigation {\\n  display: flex;\\n  flex-direction: row;\\n  gap: 20px;\\n  align-items: center;\\n  margin-inline: 10%;\\n  margin-block: 20px;\\n  height: 100px;\\n}\\nbody .navigation a {\\n  color: #403d39;\\n  text-decoration: none;\\n}\\nbody .navigation p {\\n  border-radius: 50%;\\n  font-size: 20px;\\n  font-weight: 600;\\n}\\nbody .navigation p img {\\n  width: 80px;\\n}\\nbody .popup {\\n  display: none;\\n  position: fixed;\\n  height: 100%;\\n  top: 0;\\n  z-index: 5;\\n  overflow-y: auto;\\n}\\nbody .popup.active {\\n  display: block;\\n}\\nbody .popup .main-row {\\n  background-color: #252422;\\n  width: 90%;\\n  margin-left: auto;\\n  margin-right: auto;\\n  padding: 5px;\\n  border-radius: 8px;\\n  color: #fffcf2;\\n  overflow: scroll;\\n}\\nbody .movies {\\n  display: grid;\\n  grid-template-columns: 1fr 1fr 1fr 1fr;\\n  align-items: center;\\n  justify-content: space-around;\\n  margin-inline: 12%;\\n  padding-top: 20px;\\n  gap: 30px 20px;\\n}\\nbody .movies div {\\n  display: flex;\\n  flex-direction: column;\\n  gap: 5px;\\n  width: 200px;\\n}\\nbody .movies div h2 {\\n  font-size: 18px;\\n}\\nbody .movies div button {\\n  border: none;\\n  background: #403d39;\\n  color: #ccc5b9;\\n  border-radius: 3px;\\n  padding: 6px 8px;\\n}\\nbody .movies div div {\\n  display: block;\\n}\\nbody .movies div div img {\\n  width: 200px;\\n  height: 200px;\\n  object-fit: cover;\\n}\\nbody .movies div div .title {\\n  display: flex;\\n  flex-direction: row;\\n  justify-content: space-between;\\n  align-items: center;\\n}\\nbody .movies div div span {\\n  display: flex;\\n  flex-direction: column;\\n  width: fit-content;\\n}\\nbody .movies div div span button {\\n  border: none;\\n  background: transparent;\\n  color: red;\\n}\\nbody .movies div div span button .fa-heart {\\n  color: red;\\n  background: #ccc5b9;\\n  border: none;\\n  font-size: 22px;\\n  transition: all 250ms ease-in-out;\\n}\\nbody .movies div div span button .fa-heart:hover, body .movies div div span button .fa-heart:focus {\\n  color: red;\\n  background: #ccc5b9;\\n  border: none;\\n  font-size: 26px;\\n}\", \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://kanban/./src/styles/style.scss?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
 
 /***/ }),
 
@@ -110,13 +160,13 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 
 /***/ }),
 
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ "./src/assets/KANBAN.png":
+/*!*******************************!*\
+  !*** ./src/assets/KANBAN.png ***!
+  \*******************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/style.scss */ \"./src/styles/style.scss\");\n\n\nfetch('https://api.tvmaze.com/shows/163',{\n    method: \"GET\",\n})\n  .then((response) => response.json())\n  .then((data) => console.log(data))\n  \n\n//# sourceURL=webpack://kanban/./src/index.js?");
+eval("module.exports = __webpack_require__.p + \"b0d98d3770aa28dc950a.png\";\n\n//# sourceURL=webpack://kanban/./src/assets/KANBAN.png?");
 
 /***/ })
 
@@ -171,6 +221,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sty
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -185,6 +247,26 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sty
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/nonce */
