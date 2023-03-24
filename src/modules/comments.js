@@ -62,7 +62,7 @@ const commentLayout = (index) => {
     const commentPopUp = document.querySelectorAll('.comments-btn');
     const popup = document.querySelector('.popup');
     commentPopUp.forEach((button) => {
-      button.addEventListener('click', () => {
+      button.addEventListener('click', async () => {
         const index = parseInt(button.dataset.movies);
         const movie = movies[index];// get the index of the movie element from the button's data-ref attribute
         const imgSrc = movie.image.medium; // get the image src from the movie element
@@ -92,9 +92,20 @@ const commentLayout = (index) => {
           const countComment = document.querySelector('.count-comments');
           countComment.innerHTML = `<h5>Comments (${getAllComment.length})</h5>`;
         });
+        const movieIndexGet = movies[index];
+        const movieIdGet = movieIndexGet.id;
+        const getAllComment = await getComment(movieIdGet);
+        let html = '';
+        getAllComment.forEach((element) => {
+          html += `<li>${element.creation_date} --- ${element.comment} --- ${element.username}</li>`; 
+        });
+        commentList.innerHTML = html;
+        const countCommentTwo = document.querySelector('.count-comments');
+        countCommentTwo.innerHTML = `<h5>Comments (${getAllComment.length})</h5>`;
       });
     });
-  };
+  };  
+
   
   const closePopup = () => {
     document.querySelector('.exit-btn').addEventListener('click', () =>{
@@ -135,4 +146,4 @@ const commentLayout = (index) => {
     }
   };
   
- export { commentLayout, commentBtn, closePopup };
+ export { commentLayout, commentBtn, closePopup, getComment, postComment };
