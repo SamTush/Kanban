@@ -20,6 +20,9 @@
     },
     "ignorePatterns": [
       "dist/",
-      "build/"
+      "build/",
+      "coverage/",
+      "jest.config.js",
+      "webpack.config.js"
     ]
   }
