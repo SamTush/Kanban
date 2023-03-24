@@ -14,7 +14,7 @@ const postLike = async (itemId) => {
       return ('Like recorded successfully!');
     }
   } catch (error) {
-    alert('Error recording like:', error);
+    return ('Error recording like:', error);
   }
 };
 

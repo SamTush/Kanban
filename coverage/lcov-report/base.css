@@ -48,15 +48,7 @@ a:hover { text-decoration:underline; }
   .col3 { width:100%; max-width:100%; }
   .hide-mobile { display:none!important; }
 }
-.coverage-summary .sorter {
-  background-image: url(sort-arrow-sprite.png);
-}
-.chart {
-  width: 100%;
-}
-.cover-empty {
-  width: 0%;
-}
+
 .quiet {
   color: #7f7f7f;
   color: rgba(0,0,0,0.5);
