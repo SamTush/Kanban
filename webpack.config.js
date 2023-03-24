@@ -36,9 +36,9 @@ module.exports = {
             {
                 test: /\.sass$/,
                 use: [
+                    'style-loader',
                     'sass-loader',
-                    'sass',
-                    'style-loader'
+                    'sass'
                 ]
             },
             {
