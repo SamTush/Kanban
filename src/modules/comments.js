@@ -23,6 +23,7 @@ const commentLayout = () => {
                    <div class="col col-6 ps-4"></div>
                    <div class="col col-6 ps-5"></div>
                    <div class="col col-12 pt-1 ps-4"></div>
+
                </div>
            </div>
            <div class="col col-12 pt-3 mt-4 comments-section">
@@ -38,7 +39,9 @@ const commentLayout = () => {
                    <h5 class="mb-">Add a comment</h5>
                </div>
                <div>
+
                    <form onsubmit="return false" action="POST" class="form">
+
                        <div class="mt-3 ps-4">
                        <label for="Your name"hidden>Your name</label>
                        <input type="text" class="form-control" id="your-name" placeholder="Your name">
