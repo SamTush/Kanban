@@ -62,7 +62,7 @@ const commentBtn = async (movies) => {
   const popup = document.querySelector('.popup');
   commentPopUp.forEach((button) => {
     button.addEventListener('click', async () => {
-      const index = parseInt(button.dataset.movies);
+      const index = parseInt(button.dataset.movies, 10);
       const movie = movies[index];
       const imgSrc = movie.image.medium;
       const summary = movie.summary;
@@ -79,7 +79,6 @@ const commentBtn = async (movies) => {
         const formComment = document.querySelector('#your-insights');
         const movieIndex = movies[index];
         const movieId = movieIndex.id;
-        const results = await postComment(movieId, formName.value, formComment.value);
         formComment.value = '';
         formName.value = '';
         const getAllComment = await getComment(movieId);
@@ -96,24 +95,24 @@ const commentBtn = async (movies) => {
       const getAllComment = await getComment(movieIdGet);
       let html = '';
       getAllComment.forEach((element) => {
-        html += `<li>${element.creation_date} --- ${element.comment} --- ${element.username}</li>`; 
+        html += `<li>${element.creation_date} --- ${element.comment} --- ${element.username}</li>`;
       });
       commentList.innerHTML = html;
       const countCommentTwo = document.querySelector('.count-comments');
       countCommentTwo.innerHTML = `<h5>Comments (${getAllComment.length})</h5>`;
     });
   });
-};  
+};
 
 const closePopup = () => {
-  document.querySelector('.exit-btn').addEventListener('click', () =>{
+  document.querySelector('.exit-btn').addEventListener('click', () => {
     const popup = document.querySelector('.popup');
     popup.classList.remove('active');
-  })
+  });
 };
 
 const involvementId = 'sGPblqXwvYvemdbE1QYB';
-const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments`;  
+const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments`;
 
 const postComment = async (item_id , name, comment) => {
   const data = {
