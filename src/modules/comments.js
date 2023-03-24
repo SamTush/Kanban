@@ -57,9 +57,9 @@ const commentLayout = (index) => {
     `);
 };
   
-const getComment = async (item_id) => {
+const getComment = async (itemId) => {
   try {
-    const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments?item_id=${item_id}`);
+    const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments?item_id=${itemId}`);
     const commentUser = await response.json();
     return commentUser;
   } catch (error) {
@@ -81,15 +81,18 @@ const commentBtn = async (movies) => {
       document.querySelector('.title-section h2').textContent = `Arrow Season ${season}`;
       document.querySelector('.title-section .ps-4').innerHTML = summary;
       popup.classList.add('active');
-      
+
       const commentFrom = document.querySelector('#form-submit-comment');
       const commentList = document.querySelector('.commentsList');
       commentFrom.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const formName = document.querySelector('#your-name');
-        const formComment = document.querySelector('#your-insights');
+        const formName = document.querySelector('#your-name').value;
+        const formComment = document.querySelector('#your-insights').value;
         const movieIndex = movies[index];
         const movieId = movieIndex.id;
+        console.log(movieId, formComment, formName)
+        console.log(postComment(movieId, formName, formComment))
+        postComment(movieId, formName, formComment);
         formComment.value = '';
         formName.value = '';
         const getAllComment = await getComment(movieId);
@@ -125,12 +128,7 @@ const closePopup = () => {
 const involvementId = 'sGPblqXwvYvemdbE1QYB';
 const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments`;
 
-const postComment = async (item_id , name, comment) => {
-  const data = {
-    "item_id": item_id,
-    "username": name,
-    "comment": comment
-  };
+const postComment = async (itemId , name, comment) => {
   const response = await fetch(
     commentUrl,
     {
@@ -138,10 +136,16 @@ const postComment = async (item_id , name, comment) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        item_id: itemId,
+        username: name,
+        comment: comment
+      }),
     },
   );
-  return response;
+  const data = await response.text();
+  getComment(movieId);
+  return data || null;
 };
   
 export { commentLayout, commentBtn, closePopup, getComment, postComment };
