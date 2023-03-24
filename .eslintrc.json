@@ -23,7 +23,6 @@
       "build/",
       "coverage/",
       "jest.config.js",
-      "src/",
       "webpack.config.js"
     ]
   }

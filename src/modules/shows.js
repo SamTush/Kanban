@@ -61,4 +61,17 @@ const like = () => {
   });
 };
 
-export { like, getLikes };
+const movies = [];
+
+const arrow = async () => {
+  const response = await fetch('https://api.tvmaze.com/shows/4/seasons', {
+    method: 'GET',
+  });
+  const data = await response.json();
+  for (let i = 0; i < data.length; i++) {
+    movies.push(data[i]);
+  }
+  return movies;
+};
+
+export { like, getLikes, arrow };
