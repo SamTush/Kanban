@@ -1,3 +1,5 @@
+const involvementId = 'sGPblqXwvYvemdbE1QYB';
+const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments`;
 const nav = document.querySelector('.navigation');
 const commentLayout = (index) => {
   nav.insertAdjacentHTML('afterend', ` <div class="container-fluid popup p-5 mt-5" id="popup-${index}">
@@ -86,13 +88,12 @@ const commentBtn = async (movies) => {
       const commentList = document.querySelector('.commentsList');
       commentFrom.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const formName = document.querySelector('#your-name').value;
-        const formComment = document.querySelector('#your-insights').value;
+        const formName = document.querySelector('#your-name');
+        const formComment = document.querySelector('#your-insights');
         const movieIndex = movies[index];
         const movieId = movieIndex.id;
-        console.log(movieId, formComment, formName)
-        console.log(postComment(movieId, formName, formComment))
-        postComment(movieId, formName, formComment);
+        console.log(movieId)
+        await postComment(movieId, formName.value, formComment.value);
         formComment.value = '';
         formName.value = '';
         const getAllComment = await getComment(movieId);
@@ -125,9 +126,6 @@ const closePopup = () => {
   });
 };
 
-const involvementId = 'sGPblqXwvYvemdbE1QYB';
-const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments`;
-
 const postComment = async (itemId , name, comment) => {
   const response = await fetch(
     commentUrl,
@@ -144,7 +142,7 @@ const postComment = async (itemId , name, comment) => {
     },
   );
   const data = await response.text();
-  getComment(movieId);
+  getComment(itemId);
   return data || null;
 };
   
