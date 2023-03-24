@@ -46,10 +46,9 @@ const like = () => {
   const likeBtn = document.querySelectorAll('.like-btn');
   likeBtn.forEach((button) => {
     button.addEventListener('click', () => {
-      const itemId = button.parentNode.parentNode.querySelector('img').getAttribute('src');
+      const itemId = button.parentNode.parentNode.parentNode.querySelector('img').getAttribute('src');
       postLike(itemId);
       button.disabled = true;
-      button.innerText = 'Liked';
       const likesDisplay = button.parentNode.querySelector('.likes');
       if (likesDisplay) {
         const likesCount = parseInt(likesDisplay.innerText) + 1;

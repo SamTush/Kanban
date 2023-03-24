@@ -11,6 +11,7 @@ $tertiary-color-light: #fffcf2;
 }
 
 body {
+  display: block;
   background: $tertiary-color;
   margin: 0;
 
@@ -28,7 +29,8 @@ body {
     flex-direction: row;
     gap: 20px;
     align-items: center;
-    margin: 20px;
+    margin-inline: 10%;
+    margin-block: 20px;
     height: 100px;
 
     a {
@@ -38,6 +40,8 @@ body {
 
     p {
       border-radius: 50%;
+      font-size: 20px;
+      font-weight: 600;
 
       img {
         width: 80px;
@@ -56,12 +60,13 @@ body {
     &.active {
       display: block;
     }
+
     .main-row {
       background-color: $secondary-color;
       width: 90%;
       margin-left: auto;
       margin-right: auto;
-      padding: 20px;
+      padding: 5px;
       border-radius: 8px;
       color: $tertiary-color-light;
       overflow: scroll;
@@ -70,42 +75,75 @@ body {
 
   .movies {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: center;
     justify-content: space-around;
-    margin-inline: 8%;
-    gap: 20px 10px;
-  }
-
-  div {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    margin-inline: 12%;
+    padding-top: 20px;
+    gap: 30px 20px;
 
     div {
-      display: block;
-
-      img {
-        width: 250px;
-        height: 200px;
-        object-fit: cover;
-      }
-
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      width: 200px;
+      
       h2 {
         font-size: 18px;
       }
 
-      span {
-        display: flex;
-        flex-direction: column;
-        width: fit-content;
+      div {
+        display: block;
 
-        button {
-          border: none;
-          background: transparent;
-          color: red;
+        img {
+          width: 200px;
+          height: 200px;
+          object-fit: cover;
+        }
+
+        .title {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        span {
+          display: flex;
+          flex-direction: column;
+          width: fit-content;
+
+          button {
+            border: none;
+            background: transparent;
+            color: red;
+
+            .fa-heart {
+              color: red;
+              background: $tertiary-color;
+              border: none;
+              font-size: 22px;
+              transition: all 250ms ease-in-out;
+
+            &:hover,
+            &:focus {
+              color: red;
+              background: $tertiary-color;
+              border: none;
+              font-size: 26px;
+            }
+            }
+          }
         }
       }
+    }
+
+    button {
+      border: none;
+      background: $secondary-color-light;
+      color: #ccc5b9;
+      border-radius: 3px;
+      padding: 6px 8px;
     }
   }
 }
