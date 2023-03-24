@@ -1,65 +1,60 @@
-import { submitForm } from "./addcomment";
-const involvementId = 'sGPblqXwvYvemdbE1QYB';
-const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments`;
 const nav = document.querySelector('.navigation');
 const commentLayout = () => {
-    nav.insertAdjacentHTML('afterend',` <div class="container-fluid popup p-5 mt-5">
-       <div class="row">
-           <div class="col col-12 img-section">
-               <div class="row">
-                   <div class="col col-11 d-flex justify-content-center">
-                       <img id="popup-img" src="" alt="" srcset="">
-                   </div>
-                   <button class="col col-1 mt-3">
-                       <i class="fa-solid fa-xmark fa-2xl exit-btn"></i>
-                   </button>
-               </div>
-           </div>
-           <div class="col col-12 pt-3 title-section">
-               <div class="row">
-                   <div class="col col-12 d-flex justify-content-center">
-                       <h2></h2>
-                   </div>
-                   <div class="col col-6 ps-4"></div>
-                   <div class="col col-6 ps-5"></div>
-                   <div class="col col-12 pt-1 ps-4"></div>
-  
-               </div>
-           </div>
-           <div class="col col-12 comments-section">
-           <div class="row comments-container">
-             <div class="col col-12 d-flex justify-content-center">
-               <h5 class="comment-title"></h5>
-               <ul class="comments"></ul>
-             </div>
-           </div>
-         </div>
-         
-           <div class="col col-12 comment-section mt-4 pt-3">
-               <div class="col col-12 d-flex justify-content-center">
-                   <h5 class="mb-">Add a comment</h5>
-               </div>
-               <div>
-  
-                   <form  class="form">
-  
-                       <div class="mt-3 ps-4">
-                       <label for="Your name"hidden>Your name</label>
-                       <input type="text" class="form-control" id="your-name" placeholder="Your name">
-                       </div>
-                       <div class="mt-3 ps-4">
-                       <label for="Your insights"hidden>Your insights</label>
-                       <textarea type="text" class="form-control" id="your-insights" placeholder="Your insights"></textarea>
-                       </div>
-                       <div class=" mt-3 ps-4">
-                        <button type="button" id="form-submit" class="btn btn-outline-light" value="Submit"></button>
-                       </div>
-                   </form>
-               </div>
-           </div>
-       </div>
-       </div>
-       `);
+    nav.insertAdjacentHTML('afterend', ` <div class="container-fluid popup p-5 mt-5">
+    <div class="row main-row">
+        <div class="col col-12 img-section">
+            <div class="row">
+                <div class="col col-11 d-flex justify-content-center">
+                    <img id="popup-img" src="" alt="" srcset="">
+                </div>
+                <button class="col col-1 mt-3">
+                    <i class="fa-solid fa-xmark fa-2xl exit-btn"></i>
+                </button>
+            </div>
+        </div>
+        <div class="col col-12 pt-3 title-section">
+            <div class="row">
+                <div class="col col-12 d-flex justify-content-center">
+                    <h2>Arrow Season </h2>
+                </div>
+                <div class="col col-6 ps-4"></div>
+                <div class="col col-6 ps-5"></div>
+                <div class="col col-12 pt-1 ps-4"></div>
+            </div>
+        </div>
+        <div class="col col-12 pt-3 mt-4 comments-section">
+            <div class="row coments-container">
+                <div class="col col-12 d-flex count-comments justify-content-center">
+                </div>
+                <div class="col col-12 ps-4">
+                 <ul class="commentsList">
+                 </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col col-12 comment-section mt-4 pt-3">
+            <div class="col col-12 d-flex justify-content-center">
+                <h5 class="mb-">Add a comment</h5>
+            </div>
+            <div>
+                <form id="form-submit-comment" class="comment-form">
+                    <div class="mt-3 ps-4">
+                    <label for="Your name"hidden>Your name</label>
+                    <input type="text" class="form-control" id="your-name" placeholder="Your name" required>
+                    </div>
+                    <div class="mt-3 ps-4">
+                    <label for="Your insights"hidden>Your insights</label>
+                    <textarea type="text" class="form-control" id="your-insights" placeholder="Your insights" required></textarea>
+                    </div>
+                    <div class=" mt-3 ps-4">
+                        <button type="submit" id="form-submit" class="btn btn-outline-light">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    `);
 };
   
 
@@ -77,6 +72,26 @@ const commentLayout = () => {
         document.querySelector('.title-section h2').textContent = `Arrow Season ${season}`;
         document.querySelector('.title-section .ps-4').innerHTML = summary;
         popup.classList.add('active');
+        const commentFrom = document.querySelector('#form-submit-comment');
+        const commentList = document.querySelector('.commentsList');
+        commentFrom.addEventListener('submit', async (e) => {
+        e.preventDefault();
+          const formName = document.querySelector('#your-name');
+          const formComment = document.querySelector('#your-insights');
+          const movieIndex = movies[index];
+          const movieId = movieIndex.id;
+          const results = await postComment(movieId, formName.value, formComment.value);
+          formComment.value = '';
+          formName.value = '';
+          const getAllComment = await getComment(movieId);
+          let html = '';
+          getAllComment.forEach((element) => {
+            html += `<li>${element.creation_date} --- ${element.comment} --- ${element.username}</li>`; 
+          });
+          commentList.innerHTML = html;
+          const countComment = document.querySelector('.count-comments');
+          countComment.innerHTML = `<h5>Comments (${getAllComment.length})</h5>`;
+        });
       });
     });
   };
@@ -86,6 +101,38 @@ const commentLayout = () => {
       const popup = document.querySelector('.popup');
       popup.classList.remove('active');
     })
-  }
+  };
+
+  const involvementId = 'sGPblqXwvYvemdbE1QYB';
+  const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments`;  
+
+  const postComment = async (item_id , name, comment) => {
+    const data = {
+      "item_id": item_id,
+      "username": name,
+      "comment": comment
+    };
+    const response = await fetch(
+      commentUrl,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      },
+    );
+    return response;
+  };
+  
+  const getComment = async (item_id) => {
+    try {
+      const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments?item_id=${item_id}`);
+      const commentUser = await response.json();
+      return commentUser;
+    } catch (error) {
+      return error;
+    }
+  };
   
  export { commentLayout, commentBtn, closePopup };

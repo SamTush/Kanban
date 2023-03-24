@@ -4,10 +4,13 @@ import { like, getLikes } from './modules/shows';
 import moviesCounter from './modules/itemsCounter';
 import logo from './assets/KANBAN.png';
 import { commentLayout, closePopup, commentBtn } from './modules/comments';
-import {  createComment } from './modules/addcomment';
+// import {  createComment } from './modules/addcomment';
+
+
 
 const image = document.querySelector('#logo');
-image.setAttribute('src', logo);
+image.setAttribute('src', logo); 
+const nav = document.querySelector('.navigation');
 
 let movies = [];
 
@@ -33,10 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
     commentLayout();
     commentBtn(movies);
     closePopup();
-    const form = document.querySelector('#form-submit');
-    form.addEventListener('click', () => {
-       createComment();
-    })
   });
 });
 
