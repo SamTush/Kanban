@@ -1,6 +1,6 @@
 const nav = document.querySelector('.navigation');
-const commentLayout = () => {
-    nav.insertAdjacentHTML('afterend', ` <div class="container-fluid popup p-5 mt-5">
+const commentLayout = (index) => {
+    nav.insertAdjacentHTML('afterend', ` <div class="container-fluid popup p-5 mt-5" id="popup-${index}">
     <div class="row main-row">
         <div class="col col-12 img-section">
             <div class="row">
@@ -22,7 +22,7 @@ const commentLayout = () => {
                 <div class="col col-12 pt-1 ps-4"></div>
             </div>
         </div>
-        <div class="col col-12 pt-3 mt-4 comments-section">
+        <div class="col col-12 pt-3 mt-4 comments-section" id="comments-${index}">
             <div class="row coments-container">
                 <div class="col col-12 d-flex count-comments justify-content-center">
                 </div>
