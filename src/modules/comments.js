@@ -1,6 +1,6 @@
 const nav = document.querySelector('.navigation');
 const commentLayout = (index) => {
-    nav.insertAdjacentHTML('afterend', ` <div class="container-fluid popup p-5 mt-5" id="popup-${index}">
+  nav.insertAdjacentHTML('afterend', ` <div class="container-fluid popup p-5 mt-5" id="popup-${index}">
     <div class="row main-row">
         <div class="col col-12 img-section">
             <div class="row">
@@ -56,94 +56,92 @@ const commentLayout = (index) => {
     </div>
     `);
 };
-  
 
-  const commentBtn = async (movies) => {
-    const commentPopUp = document.querySelectorAll('.comments-btn');
-    const popup = document.querySelector('.popup');
-    commentPopUp.forEach((button) => {
-      button.addEventListener('click', async () => {
-        const index = parseInt(button.dataset.movies);
-        const movie = movies[index];// get the index of the movie element from the button's data-ref attribute
-        const imgSrc = movie.image.medium; // get the image src from the movie element
-        const summary = movie.summary; // get the summary from the movie element
-        const season = movie.number; // get the season number from the movie element
-        document.getElementById('popup-img').setAttribute('src', imgSrc);
-        document.querySelector('.title-section h2').textContent = `Arrow Season ${season}`;
-        document.querySelector('.title-section .ps-4').innerHTML = summary;
-        popup.classList.add('active');
-        const commentFrom = document.querySelector('#form-submit-comment');
-        const commentList = document.querySelector('.commentsList');
-        commentFrom.addEventListener('submit', async (e) => {
+const commentBtn = async (movies) => {
+  const commentPopUp = document.querySelectorAll('.comments-btn');
+  const popup = document.querySelector('.popup');
+  commentPopUp.forEach((button) => {
+    button.addEventListener('click', async () => {
+      const index = parseInt(button.dataset.movies);
+      const movie = movies[index];
+      const imgSrc = movie.image.medium;
+      const summary = movie.summary;
+      const season = movie.number;
+      document.getElementById('popup-img').setAttribute('src', imgSrc);
+      document.querySelector('.title-section h2').textContent = `Arrow Season ${season}`;
+      document.querySelector('.title-section .ps-4').innerHTML = summary;
+      popup.classList.add('active');
+      const commentFrom = document.querySelector('#form-submit-comment');
+      const commentList = document.querySelector('.commentsList');
+      commentFrom.addEventListener('submit', async (e) => {
         e.preventDefault();
-          const formName = document.querySelector('#your-name');
-          const formComment = document.querySelector('#your-insights');
-          const movieIndex = movies[index];
-          const movieId = movieIndex.id;
-          const results = await postComment(movieId, formName.value, formComment.value);
-          formComment.value = '';
-          formName.value = '';
-          const getAllComment = await getComment(movieId);
-          let html = '';
-          getAllComment.forEach((element) => {
-            html += `<li>${element.creation_date} --- ${element.comment} --- ${element.username}</li>`; 
-          });
-          commentList.innerHTML = html;
-          const countComment = document.querySelector('.count-comments');
-          countComment.innerHTML = `<h5>Comments (${getAllComment.length})</h5>`;
-        });
-        const movieIndexGet = movies[index];
-        const movieIdGet = movieIndexGet.id;
-        const getAllComment = await getComment(movieIdGet);
+        const formName = document.querySelector('#your-name');
+        const formComment = document.querySelector('#your-insights');
+        const movieIndex = movies[index];
+        const movieId = movieIndex.id;
+        const results = await postComment(movieId, formName.value, formComment.value);
+        formComment.value = '';
+        formName.value = '';
+        const getAllComment = await getComment(movieId);
         let html = '';
         getAllComment.forEach((element) => {
           html += `<li>${element.creation_date} --- ${element.comment} --- ${element.username}</li>`; 
         });
         commentList.innerHTML = html;
-        const countCommentTwo = document.querySelector('.count-comments');
-        countCommentTwo.innerHTML = `<h5>Comments (${getAllComment.length})</h5>`;
+        const countComment = document.querySelector('.count-comments');
+        countComment.innerHTML = `<h5>Comments (${getAllComment.length})</h5>`;
       });
+      const movieIndexGet = movies[index];
+      const movieIdGet = movieIndexGet.id;
+      const getAllComment = await getComment(movieIdGet);
+      let html = '';
+      getAllComment.forEach((element) => {
+        html += `<li>${element.creation_date} --- ${element.comment} --- ${element.username}</li>`; 
+      });
+      commentList.innerHTML = html;
+      const countCommentTwo = document.querySelector('.count-comments');
+      countCommentTwo.innerHTML = `<h5>Comments (${getAllComment.length})</h5>`;
     });
-  };  
+  });
+};  
 
-  
-  const closePopup = () => {
-    document.querySelector('.exit-btn').addEventListener('click', () =>{
-      const popup = document.querySelector('.popup');
-      popup.classList.remove('active');
-    })
+const closePopup = () => {
+  document.querySelector('.exit-btn').addEventListener('click', () =>{
+    const popup = document.querySelector('.popup');
+    popup.classList.remove('active');
+  })
+};
+
+const involvementId = 'sGPblqXwvYvemdbE1QYB';
+const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments`;  
+
+const postComment = async (item_id , name, comment) => {
+  const data = {
+    "item_id": item_id,
+    "username": name,
+    "comment": comment
   };
-
-  const involvementId = 'sGPblqXwvYvemdbE1QYB';
-  const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments`;  
-
-  const postComment = async (item_id , name, comment) => {
-    const data = {
-      "item_id": item_id,
-      "username": name,
-      "comment": comment
-    };
-    const response = await fetch(
-      commentUrl,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+  const response = await fetch(
+    commentUrl,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    );
-    return response;
-  };
+      body: JSON.stringify(data),
+    },
+  );
+  return response;
+};
   
-  const getComment = async (item_id) => {
-    try {
-      const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments?item_id=${item_id}`);
-      const commentUser = await response.json();
-      return commentUser;
-    } catch (error) {
-      return error;
-    }
-  };
+const getComment = async (item_id) => {
+  try {
+    const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments?item_id=${item_id}`);
+    const commentUser = await response.json();
+    return commentUser;
+  } catch (error) {
+    return error;
+  }
+};
   
- export { commentLayout, commentBtn, closePopup, getComment, postComment };
+export { commentLayout, commentBtn, closePopup, getComment, postComment };

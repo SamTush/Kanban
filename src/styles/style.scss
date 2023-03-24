@@ -56,7 +56,7 @@ body {
     top: 0;
     z-index: 5;
     overflow-y: auto;
-   
+
     &.active {
       display: block;
     }
@@ -87,9 +87,17 @@ body {
       flex-direction: column;
       gap: 5px;
       width: 200px;
-      
+
       h2 {
         font-size: 18px;
+      }
+
+      button {
+        border: none;
+        background: $secondary-color-light;
+        color: #ccc5b9;
+        border-radius: 3px;
+        padding: 6px 8px;
       }
 
       div {
@@ -125,25 +133,17 @@ body {
               font-size: 22px;
               transition: all 250ms ease-in-out;
 
-            &:hover,
-            &:focus {
-              color: red;
-              background: $tertiary-color;
-              border: none;
-              font-size: 26px;
-            }
+              &:hover,
+              &:focus {
+                color: red;
+                background: $tertiary-color;
+                border: none;
+                font-size: 26px;
+              }
             }
           }
         }
       }
-    }
-
-    button {
-      border: none;
-      background: $secondary-color-light;
-      color: #ccc5b9;
-      border-radius: 3px;
-      padding: 6px 8px;
     }
   }
 }

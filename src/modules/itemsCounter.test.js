@@ -1,13 +1,14 @@
-"use strict";
 import moviesCounter from './itemsCounter.js';
+
 const jsdom = require('jsdom');
+
 const { JSDOM } = jsdom;
 
 const dom = new JSDOM('<!doctype html><html><body></body></html>');
 
 global.document = dom.window.document;
 
-dom.window.document.body.innerHTML = `<div class="home"></div>`;
+dom.window.document.body.innerHTML = `<div class='home'></div>`;
 
 test('it should display the correct number of items', () => {
   const movies = [
@@ -20,5 +21,3 @@ test('it should display the correct number of items', () => {
   moviesCounter(movies, mockElement);
   expect(mockElement.innerHTML).toBe(expectedResult);
 });
-
-

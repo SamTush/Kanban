@@ -1,4 +1,4 @@
-const appId = 'sGPblqXwvYvemdbE1QYB'; 
+const appId = 'sGPblqXwvYvemdbE1QYB';
 const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/likes`;
 
 const postLike = async (itemId) => {
@@ -11,12 +11,12 @@ const postLike = async (itemId) => {
   try {
     const response = await fetch(url, options);
     if (response.status === 201) {
-      console.log('Like recorded successfully!');
+      return ('Like recorded successfully!');
     }
   } catch (error) {
-    console.error('Error recording like:', error);
+    alert('Error recording like:', error);
   }
-}
+};
 
 const getLikes = async () => {
   try {
@@ -39,9 +39,10 @@ const getLikes = async () => {
       }
     });
   } catch (error) {
-    console.error('Error getting likes:', error);
-  }
-}
+    alert('Error getting likes:', error);
+  };
+};
+
 const like = () => {
   const likeBtn = document.querySelectorAll('.like-btn');
   likeBtn.forEach((button) => {
@@ -55,10 +56,9 @@ const like = () => {
         likesDisplay.innerText = likesCount === 1 ? '1 like' : `${likesCount} likes`;
       } else {
         button.insertAdjacentHTML('afterend', '<span class="likes">1 like</span>');
-      }
-    })
-  })
-}
+      };
+    });
+  });
+};
 
-
-export { like, getLikes }
+export { like, getLikes };
