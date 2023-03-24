@@ -1,7 +1,7 @@
+import { submitForm } from "./addcomment";
 const involvementId = 'sGPblqXwvYvemdbE1QYB';
 const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments`;
 const nav = document.querySelector('.navigation');
-
 const commentLayout = () => {
     nav.insertAdjacentHTML('afterend',` <div class="container-fluid popup p-5 mt-5">
        <div class="row">
@@ -23,25 +23,26 @@ const commentLayout = () => {
                    <div class="col col-6 ps-4"></div>
                    <div class="col col-6 ps-5"></div>
                    <div class="col col-12 pt-1 ps-4"></div>
-
+  
                </div>
            </div>
-           <div class="col col-12 pt-3 mt-4 comments-section">
-               <div class="row comments-container">
-                   <div class="col col-12 d-flex justify-content-center">
-                       <h5>Comments (0)</h5>
-                       <ul class="comments"></ul>
-                   </div>
-               </div>
+           <div class="col col-12 comments-section">
+           <div class="row comments-container">
+             <div class="col col-12 d-flex justify-content-center">
+               <h5 class="comment-title"></h5>
+               <ul class="comments"></ul>
+             </div>
            </div>
+         </div>
+         
            <div class="col col-12 comment-section mt-4 pt-3">
                <div class="col col-12 d-flex justify-content-center">
                    <h5 class="mb-">Add a comment</h5>
                </div>
                <div>
-
-                   <form onsubmit="return false" action="POST" class="form">
-
+  
+                   <form  class="form">
+  
                        <div class="mt-3 ps-4">
                        <label for="Your name"hidden>Your name</label>
                        <input type="text" class="form-control" id="your-name" placeholder="Your name">
@@ -51,7 +52,7 @@ const commentLayout = () => {
                        <textarea type="text" class="form-control" id="your-insights" placeholder="Your insights"></textarea>
                        </div>
                        <div class=" mt-3 ps-4">
-                           <button type="submit" id="form-submit" class="btn btn-outline-light">Submit</button>
+                        <button type="button" id="form-submit" class="btn btn-outline-light" value="Submit"></button>
                        </div>
                    </form>
                </div>
@@ -59,7 +60,8 @@ const commentLayout = () => {
        </div>
        </div>
        `);
-  };
+};
+  
 
   const commentBtn = async (movies) => {
     const commentPopUp = document.querySelectorAll('.comments-btn');

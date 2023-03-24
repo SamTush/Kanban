@@ -1,5 +1,5 @@
 const layout = (movie, index) => {
-  const movieSection = document.querySelector('#movie-list');
+  const movieSection = document.querySelector('.movies');
   const movieItem = document.createElement('div');
 
   movieItem.innerHTML = `

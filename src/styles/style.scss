@@ -73,19 +73,23 @@ body {
     gap: 10px;
 
     div {
-      img {
-        width: 250px;
-      }
 
-      span {
-        button {
-          padding: 5px;
+      div {
+         img {
+          width: 350px;
+        }
 
-          .fa-solid {
-            color: $secondary-color;
+        span {
+          button {
+            padding: 5px;
+
+            .fa-solid {
+              color: $secondary-color;
+            }
           }
         }
       }
+
     }
   }
 }

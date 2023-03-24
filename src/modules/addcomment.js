@@ -1,33 +1,62 @@
 const appId = 'sGPblqXwvYvemdbE1QYB'; 
 const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${appId}/comments`;
 
-const postComment = async (itemId, name, comment) => {
-  const requestBody = { item_id: itemId };
-  const options = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(requestBody, name, comment),
-  };
+
+const getComments = async () => {
   try {
-    const response = await fetch(url, options);
-    if (response.status === 201) {
-      console.log('Comment Added successfully!');
-    }
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
   } catch (error) {
-    console.error('Error adding comment:', error);
+    return null;
   }
-}
+};
+// const commentList = document.querySelector('.comments')
+const commentTitle = document.querySelector('.comment-title');
 
-const formSubmit = () => {
-    const submit = document.querySelector('#form-submit');
-    submit.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.querySelector('#your-name').value;
-            const comment = document.querySelector('#your-insights').value;
-            const itemId = submit.previousElementSibling.querySelector('img').getAttribute('src');
-            postComment(itemId, name, comment)
-        });
-}
+const displayComments = async () => {
+  const comments = await getComments();
+    comments.forEach((comment) => {
+      const li = document.createElement('li');
+      li.className = 'usercomments';
+      li.innerHTML = `<span class="date">|${comment.creation_date}|</span>📽️<span class="date">${comment.username}: </span><span class="date">"${comment.comment}"</span>`;
+      commentList.appendChild(li);
+    });
+
+    const numComments = commentCounter();
+    commentTitle.innerHTML = `Comments (${numComments})`;
+};
 
 
-export { formSubmit }
+const addComment = async (itemId, name, comment) => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      item_id: itemId,
+      username: name,
+      comment,
+    }),
+  });
+  const data = await response.text();
+  displayComments(itemId);
+  return data || null;
+};
+
+const createComment = () => {
+  const usernameField = document.querySelector('#your-name');
+  const commentField = document.querySelector('#your-insights');
+  const username = usernameField.value;
+  const comment = commentField.value;
+
+  addComment( username, comment);
+
+  usernameField.value = '';
+  commentField.value = '';
+};
+
+
+
+export { createComment }
