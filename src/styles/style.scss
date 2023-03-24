@@ -46,22 +46,26 @@ body {
   }
 
   .popup {
-
     display: none;
-
+    position: fixed;
+    height: 100%;
+    top: 0;
+    z-index: 5;
+    overflow-y: auto;
+   
     &.active {
       display: block;
-    // position: fixed;
-
-    // .main-row {
-    //   background-color: $secondary-color;
-    //   width: 90%;
-    //   margin-left: auto;
-    //   margin-right: auto;
-    //   padding: 20px;
-    //   border-radius: 8px;
-    //   color: $tertiary-color-light;
-    // }
+    }
+    .main-row {
+      background-color: $secondary-color;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 20px;
+      border-radius: 8px;
+      color: $tertiary-color-light;
+      overflow: scroll;
+    }
   }
 
   .movies {
@@ -70,27 +74,38 @@ body {
     align-items: center;
     justify-content: space-around;
     margin-inline: 8%;
+    gap: 20px 10px;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
     gap: 10px;
 
     div {
+      display: block;
 
-      div {
-         img {
-          width: 350px;
-        }
-
-        span {
-          button {
-            padding: 5px;
-
-            .fa-solid {
-              color: $secondary-color;
-            }
-          }
-        }
+      img {
+        width: 250px;
+        height: 200px;
+        object-fit: cover;
       }
 
+      h2 {
+        font-size: 18px;
+      }
+
+      span {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+
+        button {
+          border: none;
+          background: transparent;
+          color: red;
+        }
+      }
     }
   }
-}
 }
