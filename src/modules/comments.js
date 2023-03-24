@@ -56,6 +56,16 @@ const commentLayout = (index) => {
     </div>
     `);
 };
+  
+const getComment = async (item_id) => {
+  try {
+    const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments?item_id=${item_id}`);
+    const commentUser = await response.json();
+    return commentUser;
+  } catch (error) {
+    return error;
+  }
+};
 
 const commentBtn = async (movies) => {
   const commentPopUp = document.querySelectorAll('.comments-btn');
@@ -65,7 +75,7 @@ const commentBtn = async (movies) => {
       const index = parseInt(button.dataset.movies, 10);
       const movie = movies[index];
       const imgSrc = movie.image.medium;
-      const summary = movie.summary;
+      const { summary } = movie;
       const season = movie.number;
       document.getElementById('popup-img').setAttribute('src', imgSrc);
       document.querySelector('.title-section h2').textContent = `Arrow Season ${season}`;
@@ -131,16 +141,6 @@ const postComment = async (item_id , name, comment) => {
     },
   );
   return response;
-};
-  
-const getComment = async (item_id) => {
-  try {
-    const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments?item_id=${item_id}`);
-    const commentUser = await response.json();
-    return commentUser;
-  } catch (error) {
-    return error;
-  }
 };
   
 export { commentLayout, commentBtn, closePopup, getComment, postComment };
