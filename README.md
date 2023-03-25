@@ -1,3 +1,5 @@
+![kanban](kanban.png)
+
 # Kanban<a name="readme-top"></a>
 # 📗 Table of Contents
 
@@ -60,12 +62,13 @@ To get a local copy up and running, follow these steps.
 In order to run this project you need:
  
 - Make sure you have node.js a code editor like Vs Code and git bash
-- clone this to your local machine: https://github.com/SamTush/Kanban.git
+- clone this to your local machine: [Kanban](https://github.com/SamTush/Kanban.git)
 ### Setup
 
 Clone this repository to your desired folder:
-
+```
  git clone https://github.com/SamTush/Kanban.git
+ ```
 
 ### Install
 
