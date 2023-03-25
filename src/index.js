@@ -4,7 +4,7 @@ import { like, getLikes, arrow } from './modules/shows.js';
 import moviesCounter from './modules/itemsCounter.js';
 import logo from './assets/KANBAN.png';
 import { commentLayout, closePopup, commentBtn } from './modules/comments.js';
-import { commentsCounter } from './modules/commentsCounter.js';
+
 
 const image = document.querySelector('#logo');
 image.setAttribute('src', logo);
