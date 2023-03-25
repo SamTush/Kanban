@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1679672407897" clover="3.2.0">
-  <project timestamp="1679672407897" name="All files">
+<coverage generated="1679726183271" clover="3.2.0">
+  <project timestamp="1679726183271" name="All files">
     <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1" elements="5" coveredelements="5" complexity="0" loc="4" ncloc="4" packages="1" files="1" classes="1"/>
     <file name="itemsCounter.js" path="C:\Users\Grace\Documents\module 2\Kanban\src\modules\itemsCounter.js">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>

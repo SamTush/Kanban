@@ -52,7 +52,7 @@ const like = () => {
       button.disabled = true;
       const likesDisplay = button.parentNode.querySelector('.likes');
       if (likesDisplay) {
-        const likesCount = parseInt(likesDisplay.innerText) + 1;
+        const likesCount = parseInt(likesDisplay.innerText, 10) + 1;
         likesDisplay.innerText = likesCount === 1 ? '1 like' : `${likesCount} likes`;
       } else {
         button.insertAdjacentHTML('afterend', '<span class="likes">1 like</span>');
