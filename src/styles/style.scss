@@ -50,10 +50,11 @@ body {
   }
 
   .popup {
+    font-size: 20px;
     display: none;
     position: fixed;
     height: 100%;
-    top: 0;
+    top: -50px;
     z-index: 5;
     overflow-y: auto;
 
@@ -66,10 +67,77 @@ body {
       width: 90%;
       margin-left: auto;
       margin-right: auto;
-      padding: 5px;
       border-radius: 8px;
       color: $tertiary-color-light;
       overflow: scroll;
+      padding: 50px;
+
+      .img-section {
+        display: flex;
+        justify-content: center;
+
+        .close {
+          height: 40px;
+
+          .exit-btn {
+            color: $tertiary-color-light;
+          }
+        }
+
+        .image-row {
+          width: 100%;
+        }
+
+        .img-div {
+          width: 600px;
+          height: 300px;
+          overflow: hidden;
+
+          #popup-img {
+            width: 100%;
+          }
+        }
+      }
+
+      .title-section {
+        display: flex;
+        justify-content: center;
+
+        .title-row {
+          width: 60%;
+        }
+      }
+
+      .comments-section {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        width: 60%;
+
+        .comments-row {
+          width: 60%;
+          margin-right: auto;
+        }
+
+        .commentsList {
+          list-style-type: none;
+        }
+      }
+
+      .comment-section {
+        .form-section {
+          margin: auto;
+          width: 60%;
+
+          .name-input {
+            width: 40%;
+          }
+
+          .review-input {
+            width: 60%;
+          }
+        }
+      }
     }
   }
 
