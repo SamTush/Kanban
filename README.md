@@ -1,6 +1,12 @@
-![kanban](kanban.png)
+<div align="center">
+  <img src="src/assets/KANBAN.png" alt="logo" width="140"  height="auto" />
+  <br/>
 
-# Kanban<a name="readme-top"></a>
+  <h1><b>Kanban</b></h1>
+
+</div>
+
+<a name="readme-top"></a>
 # 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
