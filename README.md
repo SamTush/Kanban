@@ -1,4 +1,12 @@
-# Kanban<a name="readme-top"></a>
+<div align="center">
+  <img src="src/assets/KANBAN.png" alt="logo" width="140"  height="auto" />
+  <br/>
+
+  <h1><b>Kanban</b></h1>
+
+</div>
+
+<a name="readme-top"></a>
 # 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
@@ -6,6 +14,7 @@
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
   - [🚀 Live Demo](#live-demo)
+  - [🎥 Video presesntation](#video-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -44,9 +53,13 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> Add a link to your deployed project.
+- [Live Demo Link](https://samtush.github.io/Kanban/dist/)
 
-- [Live Demo Link](https://google.com)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🎥 Video presesntation <a name="video-demo"></a>
+
+- [Live Demo Link](https://drive.google.com/file/d/1vPbaP8c8Qry-gfRiCFc3ix4Rb8oeQgne/view?usp=sharing)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -60,12 +73,13 @@ To get a local copy up and running, follow these steps.
 In order to run this project you need:
  
 - Make sure you have node.js a code editor like Vs Code and git bash
-- clone this to your local machine: https://github.com/SamTush/Kanban.git
+- clone this to your local machine: [Kanban](https://github.com/SamTush/Kanban.git)
 ### Setup
 
 Clone this repository to your desired folder:
-
+```
  git clone https://github.com/SamTush/Kanban.git
+ ```
 
 ### Install
 
