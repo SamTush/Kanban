@@ -59,7 +59,7 @@
 
 ## 🎥 Video presesntation <a name="video-demo"></a>
 
-- [Live Demo Link](https://drive.google.com/file/d/1vPbaP8c8Qry-gfRiCFc3ix4Rb8oeQgne/view?usp=sharing)
+- [Video presentation](https://drive.google.com/file/d/1vPbaP8c8Qry-gfRiCFc3ix4Rb8oeQgne/view?usp=sharing)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
