@@ -117,6 +117,7 @@ const commentBtn = async (movies) => {
         await postComment(movieId, formName.value, formComment.value);
         formComment.value = '';
         formName.value = '';
+        commentsCounter(movieId);
         const getAllComment = await getComment(movieId);
         let html = '';
         getAllComment.forEach((element) => {
