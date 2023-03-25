@@ -4,7 +4,7 @@
 
   <h1><b>Kanban</b></h1>
   
-  ![Screenshot](src/assets/screenschot.png)
+  ![Screenshot](src/assets/Screenshot.png)
 
 </div>
 
