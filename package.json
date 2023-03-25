@@ -1,7 +1,7 @@
 {
   "name": "kanban",
   "version": "1.0.0",
-  "description": "",
+  "description": "- [📖 About the Project](#about-project)   - [🛠 Built With](#built-with)     - [Tech Stack](#tech-stack)     - [Key Features](#key-features)   - [🚀 Live Demo](#live-demo) - [💻 Getting Started](#getting-started)   - [Setup](#setup)   - [Prerequisites](#prerequisites)   - [Install](#install)   - [Usage](#usage)   - [Run tests](#run-tests)   - [Deployment](#triangular_flag_on_post-deployment) - [👥 Authors](#authors) - [🔭 Future Features](#future-features) - [🤝 Contributing](#contributing) - [⭐️ Show your support](#support) - [🙏 Acknowledgements](#acknowledgements) - [❓ FAQ (OPTIONAL)](#faq) - [📝 License](#license)",
   "private": true,
   "scripts": {
     "start": "webpack-dev-server",
@@ -95,5 +95,6 @@
     "uri-js": "^4.4.1",
     "watchpack": "^2.4.0",
     "webpack-sources": "^3.2.3"
-  }
+  },
+  "main": "jest.config.js"
 }

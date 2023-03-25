@@ -66,10 +66,55 @@ body {
       width: 90%;
       margin-left: auto;
       margin-right: auto;
-      padding: 5px;
       border-radius: 8px;
       color: $tertiary-color-light;
       overflow: scroll;
+      padding: 50px;
+
+      .img-section {
+        display: flex;
+        justify-content: center;
+
+        .image-row {
+          width: 60%;
+        }
+      }
+
+      .title-section {
+        display: flex;
+        justify-content: center;
+
+        .title-row {
+          width: 60%;
+        }
+      }
+
+      .comments-section {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        width: 60%;
+
+        .comments-row {
+          width: 60%;
+          margin-right: auto;
+        }
+      }
+
+      .comment-section {
+        .form-section {
+          margin: auto;
+          width: 60%;
+
+          .name-input {
+            width: 40%;
+          }
+
+          .review-input {
+            width: 60%;
+          }
+        }
+      }
     }
   }
 

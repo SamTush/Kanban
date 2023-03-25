@@ -5,7 +5,7 @@ const commentLayout = (index) => {
   nav.insertAdjacentHTML('afterend', ` <div class="container-fluid popup p-5 mt-5" id="popup-${index}">
     <div class="row main-row">
         <div class="col col-12 img-section">
-            <div class="row">
+            <div class="row image-row">
                 <div class="col col-11 d-flex justify-content-center">
                     <img id="popup-img" src="" alt="" srcset="">
                 </div>
@@ -15,17 +15,17 @@ const commentLayout = (index) => {
             </div>
         </div>
         <div class="col col-12 pt-3 title-section">
-            <div class="row">
+            <div class="row title-row">
                 <div class="col col-12 d-flex justify-content-center">
                     <h2>Arrow Season </h2>
                 </div>
-                <div class="col col-6 ps-4"></div>
+                <div class="col col-12 ps-4"></div>
                 <div class="col col-6 ps-5"></div>
                 <div class="col col-12 pt-1 ps-4"></div>
             </div>
         </div>
         <div class="col col-12 pt-3 mt-4 comments-section" id="comments-${index}">
-            <div class="row coments-container">
+            <div class="row coments-container comments-row">
                 <div class="col col-12 d-flex count-comments justify-content-center">
                 </div>
                 <div class="col col-12 ps-4">
@@ -38,15 +38,15 @@ const commentLayout = (index) => {
             <div class="col col-12 d-flex justify-content-center">
                 <h5 class="mb-">Add a comment</h5>
             </div>
-            <div>
+            <div class="col col-12 form-section">
                 <form id="form-submit-comment" class="comment-form">
                     <div class="mt-3 ps-4">
                     <label for="Your name"hidden>Your name</label>
-                    <input type="text" class="form-control" id="your-name" placeholder="Your name" required>
+                    <input type="text" class="form-control name-input" id="your-name" placeholder="Your name" required>
                     </div>
                     <div class="mt-3 ps-4">
                     <label for="Your insights"hidden>Your insights</label>
-                    <textarea type="text" class="form-control" id="your-insights" placeholder="Your insights" required></textarea>
+                    <textarea type="text" class="form-control review-input" id="your-insights" placeholder="Your insights" required></textarea>
                     </div>
                     <div class=" mt-3 ps-4">
                         <button type="submit" id="form-submit" class="btn btn-outline-light">Submit</button>
