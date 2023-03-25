@@ -7,9 +7,11 @@ const commentLayout = (index) => {
         <div class="col col-12 img-section">
             <div class="row image-row">
                 <div class="col col-11 d-flex justify-content-center">
-                    <img id="popup-img" src="" alt="" srcset="">
+                    <div class="img-div">
+                      <img id="popup-img" src="" alt="" srcset="">
+                    </div>
                 </div>
-                <button class="col col-1 mt-3">
+                <button class="col col-1 mt-3 btn close">
                     <i class="fa-solid fa-xmark fa-2xl exit-btn"></i>
                 </button>
             </div>
@@ -49,7 +51,7 @@ const commentLayout = (index) => {
                     <textarea type="text" class="form-control review-input" id="your-insights" placeholder="Your insights" required></textarea>
                     </div>
                     <div class=" mt-3 ps-4">
-                        <button type="submit" id="form-submit" class="btn btn-outline-light">Submit</button>
+                        <button type="submit" id="form-submit" class="btn btn-outline-light">comment</button>
                     </div>
                 </form>
             </div>

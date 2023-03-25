@@ -75,8 +75,26 @@ body {
         display: flex;
         justify-content: center;
 
+        .close {
+          height: 40px;
+          
+          .exit-btn {
+            color: $tertiary-color-light;
+          }
+        }
+
         .image-row {
-          width: 60%;
+          width: 100%;
+        }
+
+        .img-div {
+          width: 600px;
+          height: 300px;
+          overflow: hidden;
+
+          #popup-img {
+            width: 100%;
+          }
         }
       }
 
