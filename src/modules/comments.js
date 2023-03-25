@@ -100,7 +100,7 @@ const commentBtn = async (movies) => {
     button.addEventListener('click', async () => {
       const index = parseInt(button.dataset.movies, 10);
       const movie = movies[index];
-      const imgSrc = movie.image.medium;
+      const imgSrc = movie.image.original;
       const { summary } = movie;
       const season = movie.number;
       document.getElementById('popup-img').setAttribute('src', imgSrc);

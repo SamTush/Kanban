@@ -89,7 +89,7 @@ body {
         }
 
         .img-div {
-          width: 600px;
+          width: 500px;
           height: 300px;
           overflow: hidden;
 
@@ -111,12 +111,12 @@ body {
       .comments-section {
         display: flex;
         justify-content: center;
-        margin: auto;
-        width: 60%;
+        margin-inline: auto;
+        width: 80%;
 
         .comments-row {
-          width: 60%;
-          margin-right: auto;
+          width: 80%;
+          margin-inline: auto;
         }
 
         .commentsList {
