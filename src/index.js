@@ -5,7 +5,6 @@ import moviesCounter from './modules/itemsCounter.js';
 import logo from './assets/KANBAN.png';
 import { commentLayout, closePopup, commentBtn } from './modules/comments.js';
 
-
 const image = document.querySelector('#logo');
 image.setAttribute('src', logo);
 
