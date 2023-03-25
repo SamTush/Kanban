@@ -3,6 +3,8 @@
   <br/>
 
   <h1><b>Kanban</b></h1>
+  
+  ![Screenshot](src/assets/screenschot.png)
 
 </div>
 
@@ -38,12 +40,13 @@
 
 ## 🛠 Built With <a name="built-with"></a>
 
-- [] Javascript
-- [] Html and CSS
-- [] Webpack
-- [] Bootstrap
-- [] Jest
+- Javascript
+- Html and CSS
+- Webpack
+- Bootstrap
+- Jest
 - Sass 
+
 ### Key Features <a name="key-features"></a>
 
 - **Like Button that save and displays likes on a invovlement API**
