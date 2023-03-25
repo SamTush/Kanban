@@ -1,3 +1,5 @@
+import { commentsCounter } from "./commentsCounter";
+
 const involvementId = 'sGPblqXwvYvemdbE1QYB';
 const commentUrl = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${involvementId}/comments`;
 const nav = document.querySelector('.navigation');
@@ -103,7 +105,7 @@ const commentBtn = async (movies) => {
       document.querySelector('.title-section h2').textContent = `Arrow Season ${season}`;
       document.querySelector('.title-section .ps-4').innerHTML = summary;
       popup.classList.add('active');
-
+      commentsCounter(movie.id);
       const commentFrom = document.querySelector('#form-submit-comment');
       const commentList = document.querySelector('.commentsList');
       commentFrom.addEventListener('submit', async (e) => {
@@ -121,8 +123,6 @@ const commentBtn = async (movies) => {
           html += `<li>${element.creation_date} --- ${element.comment} --- ${element.username}</li>`;
         });
         commentList.innerHTML = html;
-        const countComment = document.querySelector('.count-comments');
-        countComment.innerHTML = `<h5>Comments (${getAllComment.length})</h5>`;
       });
       const movieIndexGet = movies[index];
       const movieIdGet = movieIndexGet.id;
@@ -132,8 +132,6 @@ const commentBtn = async (movies) => {
         html += `<li>${element.creation_date} --- ${element.comment} --- ${element.username}</li>`;
       });
       commentList.innerHTML = html;
-      const countCommentTwo = document.querySelector('.count-comments');
-      countCommentTwo.innerHTML = `<h5>Comments (${getAllComment.length})</h5>`;
     });
   });
 };
